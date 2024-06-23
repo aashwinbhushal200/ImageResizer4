@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageResizer4", "ImageResizer4\ImageResizer4.csproj", "{12BCC6CD-AC92-4176-9583-E4986ACBC553}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageHandle", "ImageResizer4\ImageHandle.csproj", "{12BCC6CD-AC92-4176-9583-E4986ACBC553}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
