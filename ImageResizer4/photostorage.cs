@@ -16,7 +16,7 @@ namespace ImageResizer4
     public  class photostorage
     {
         [FunctionName("photostorage")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req,
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous,"post")] HttpRequest req,
         [Blob("photos", FileAccess.ReadWrite, Connection = Literals.StorageConnectionString)] BlobContainerClient blobContainer,
         //cosmos db ouput binding:
         [CosmosDB("photos",
