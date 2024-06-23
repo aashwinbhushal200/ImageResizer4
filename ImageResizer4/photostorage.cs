@@ -18,7 +18,12 @@ namespace ImageResizer4
         [FunctionName("photostorage")]
         public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req,
         [Blob("photos", FileAccess.ReadWrite, Connection = Literals.StorageConnectionString)] BlobContainerClient blobContainer,
-        ILogger _logger)
+        //cosmos db ouput binding:
+        [CosmosDB("photos",
+                      "metadata",
+                      Connection = Literals.CosmosDBConnection,
+                      CreateIfNotExists = true)] IAsyncCollector<dynamic> items,
+         ILogger _logger)
 
         {
             _logger?.LogInformation("C# HTTP trigger function processed a request.");
@@ -36,9 +41,21 @@ namespace ImageResizer4
             var photoBytes = Convert.FromBase64String(request.Photo);
             //upload byte photo to cloudBLockBlob;
             using var photoStream = new MemoryStream(photoBytes);
+            
             await cloudBlockBlob.UploadAsync(photoStream, true);
             //logger
             _logger.LogInformation($"successfully upload {newId}");
+
+            //comomos db
+            var item = new
+            {
+                id = newId,
+                name = request.Name,
+                description = request.Description,
+                tags = request.Tags
+            };
+            items.AddAsync(item);
+            _logger.LogInformation($"successfully uploaded item metadata");
             return new OkObjectResult(newId);
         }
     }
