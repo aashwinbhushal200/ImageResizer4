@@ -13,9 +13,9 @@ using Azure.Storage.Blobs;
 
 namespace ImageResizer4
 {
-    public  class Function1
+    public  class photostorage
     {
-        [FunctionName("Function1")]
+        [FunctionName("photostorage")]
         public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req,
         [Blob("photos", FileAccess.ReadWrite, Connection = Literals.StorageConnectionString)] BlobContainerClient blobContainer,
         ILogger _logger)
