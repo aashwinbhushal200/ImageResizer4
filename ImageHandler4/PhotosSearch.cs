@@ -41,7 +41,7 @@ namespace ImageHandler
               .Where(p => p.Description.Contains(searchTerm));
 
 
-            var results = new List<PhotoUploadModel>();
+            var results = new List<dynamic>();
             var iterator = query.ToFeedIterator();
 
             while ( iterator.HasMoreResults)

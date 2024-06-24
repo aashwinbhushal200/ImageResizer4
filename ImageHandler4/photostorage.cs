@@ -52,17 +52,19 @@ namespace ImageHandler
             //logger
             _logger.LogInformation($"successfully upload {newId}");
 
+            var analysisResult = await analyzerService.AnalyzeAsync(photoBytes);
             //comomos db
             var item = new
             {
                 id = newId,
                 name = request.Name,
                 description = request.Description,
-                tags = request.Tags
+                tags = request.Tags,
+                AnalysisResult= analysisResult
             };
             items.AddAsync(item);
             _logger.LogInformation($"successfully uploaded item metadata");
-            return new OkObjectResult(newId);
+            return new OkObjectResult(item);
         }
     }
 }
