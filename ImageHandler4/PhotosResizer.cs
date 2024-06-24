@@ -8,7 +8,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 
-namespace ImageResizer4
+namespace ImageHandler
 {
     public static class PhotosResizer
     {

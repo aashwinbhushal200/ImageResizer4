@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageHandle", "ImageResizer4\ImageHandle.csproj", "{12BCC6CD-AC92-4176-9583-E4986ACBC553}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnalyzerService.Abstraction", "AnalyzerService.Abstraction\AnalyzerService.Abstraction.csproj", "{547973FB-CDF8-4707-AB45-9334107157F2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnalyzerService", "AnalyzerService\AnalyzerService.csproj", "{F01DD547-4DC6-4006-9D30-18E7171A5893}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageHandler", "ImageHandler4\ImageHandler.csproj", "{FA449D0A-93BC-4739-8D4E-5C6355485287}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{12BCC6CD-AC92-4176-9583-E4986ACBC553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12BCC6CD-AC92-4176-9583-E4986ACBC553}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12BCC6CD-AC92-4176-9583-E4986ACBC553}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12BCC6CD-AC92-4176-9583-E4986ACBC553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{547973FB-CDF8-4707-AB45-9334107157F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{547973FB-CDF8-4707-AB45-9334107157F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{547973FB-CDF8-4707-AB45-9334107157F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{547973FB-CDF8-4707-AB45-9334107157F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F01DD547-4DC6-4006-9D30-18E7171A5893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F01DD547-4DC6-4006-9D30-18E7171A5893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F01DD547-4DC6-4006-9D30-18E7171A5893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F01DD547-4DC6-4006-9D30-18E7171A5893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA449D0A-93BC-4739-8D4E-5C6355485287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA449D0A-93BC-4739-8D4E-5C6355485287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA449D0A-93BC-4739-8D4E-5C6355485287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA449D0A-93BC-4739-8D4E-5C6355485287}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

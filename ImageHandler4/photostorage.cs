@@ -7,14 +7,20 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using ImageResizer4.Models;
-using ImageResizer4;
+using ImageHandler.Models;
 using Azure.Storage.Blobs;
+using AnalyzerService.Abstraction;
 
-namespace ImageResizer4
+namespace ImageHandler
 {
     public  class photostorage
     {
+        private readonly IAnalyzerService analyzerService;
+
+        public photostorage(IAnalyzerService analyzerService)
+        {
+            this.analyzerService = analyzerService;
+        }
         [FunctionName("photostorage")]
         public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous,"post")] HttpRequest req,
         [Blob("photos", FileAccess.ReadWrite, Connection = Literals.StorageConnectionString)] BlobContainerClient blobContainer,

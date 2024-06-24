@@ -1,4 +1,6 @@
-﻿namespace AnalyzerService.Abstraction
+﻿using System.Threading.Tasks;
+
+namespace AnalyzerService.Abstraction
 {
     public interface IAnalyzerService
     {

@@ -1,4 +1,4 @@
-﻿namespace ImageResizer4
+﻿namespace ImageHandler
 {
     public static class Literals
     {

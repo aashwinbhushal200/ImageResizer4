@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-namespace ImageResizer4.Models
+namespace ImageHandler.Models
 {
     public class PhotoUploadModel
     {
