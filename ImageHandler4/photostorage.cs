@@ -7,18 +7,29 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using ImageResizer4.Models;
-using ImageResizer4;
+using ImageHandler.Models;
 using Azure.Storage.Blobs;
+using AnalyzerService.Abstraction;
 
-namespace ImageResizer4
+namespace ImageHandler
 {
-    public  class Function1
+    public  class photostorage
     {
-        [FunctionName("Function1")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req,
+        private readonly IAnalyzerService analyzerService;
+
+        public photostorage(IAnalyzerService analyzerService)
+        {
+            this.analyzerService = analyzerService;
+        }
+        [FunctionName("photostorage")]
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous,"post")] HttpRequest req,
         [Blob("photos", FileAccess.ReadWrite, Connection = Literals.StorageConnectionString)] BlobContainerClient blobContainer,
-        ILogger _logger)
+        //cosmos db ouput binding:
+        [CosmosDB("photos",
+                      "metadata",
+                      Connection = Literals.CosmosDBConnection,
+                      CreateIfNotExists = true)] IAsyncCollector<dynamic> items,
+         ILogger _logger)
 
         {
             _logger?.LogInformation("C# HTTP trigger function processed a request.");
@@ -36,10 +47,24 @@ namespace ImageResizer4
             var photoBytes = Convert.FromBase64String(request.Photo);
             //upload byte photo to cloudBLockBlob;
             using var photoStream = new MemoryStream(photoBytes);
+            
             await cloudBlockBlob.UploadAsync(photoStream, true);
             //logger
             _logger.LogInformation($"successfully upload {newId}");
-            return new OkObjectResult(newId);
+
+            var analysisResult = await analyzerService.AnalyzeAsync(photoBytes);
+            //comomos db
+            var item = new
+            {
+                id = newId,
+                name = request.Name,
+                description = request.Description,
+                tags = request.Tags,
+                AnalysisResult= analysisResult
+            };
+            items.AddAsync(item);
+            _logger.LogInformation($"successfully uploaded item metadata");
+            return new OkObjectResult(item);
         }
     }
 }
